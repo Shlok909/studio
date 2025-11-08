@@ -140,7 +140,7 @@ export default function ConversationCoachingPage() {
                   )}
                   <div
                     className={cn(
-                      "max-w-xl rounded-lg p-3 text-sm shadow-sm",
+                      "max-w-lg rounded-lg p-3 text-sm shadow-sm",
                       message.role === "user"
                         ? "bg-primary text-primary-foreground rounded-br-none"
                         : "bg-muted rounded-bl-none"

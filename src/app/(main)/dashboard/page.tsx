@@ -58,12 +58,12 @@ export default function DashboardPage() {
     PlaceHolderImages.find((img) => img.id === id);
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-8 md:gap-12">
       <div className="text-center flex flex-col items-center gap-4">
         <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
           Your AI Relationship Wingman
         </div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
+        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl font-headline">
           Build Confidence, Not Just Connections
         </h1>
         <p className="mt-2 max-w-2xl text-lg text-primary/90">
@@ -78,7 +78,7 @@ export default function DashboardPage() {
         </Button>
       </div>
 
-      <div id="features" className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2 scroll-mt-20">
+      <div id="features" className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 scroll-mt-20">
         {features.map((feature) => {
           const image = getImage(feature.imageId);
           return (

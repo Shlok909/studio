@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -122,7 +123,7 @@ export default function CommunicationAnalyzerPage() {
         </p>
       </div>
 
-      {!analysis && (
+      {!analysis && !isLoading && (
         <Card>
           <CardContent className="pt-6">
             <Form {...form}>
