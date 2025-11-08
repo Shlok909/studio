@@ -187,7 +187,7 @@ export default function ConversationCoachingPage() {
                         <Textarea
                           id="message"
                           placeholder="Ask me how to start a conversation..."
-                          className="min-h-12 resize-none border-input pr-16 shadow-sm"
+                          className="min-h-12 resize-none border-destructive pr-16 shadow-sm"
                           {...field}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" && !e.shiftKey) {
