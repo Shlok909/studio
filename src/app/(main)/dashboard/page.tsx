@@ -44,6 +44,13 @@ const features = [
     icon: Icons.maturity,
     imageId: "maturity-enhancement",
   },
+  {
+    title: "Safe Communication Analyzer",
+    description: "Get instant feedback on your messages before you send them.",
+    href: "/communication-analyzer",
+    icon: Icons.analyzer,
+    imageId: "communication-analyzer",
+  },
 ];
 
 export default function DashboardPage() {

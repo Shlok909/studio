@@ -3,26 +3,32 @@
     {
       "id": "conversation-coaching",
       "description": "Two people having a pleasant conversation on a park bench.",
-      "imageUrl": "https://images.unsplash.com/photo-1610070835951-156b6921281d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb252ZXJzYXRpb24lMjBwYXJrfGVufDB8fHx8MTc2MjYxNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1746289222082-3a1b520b9000?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb252ZXJzYXRpb24lMjBwYXJrfGVufDB8fHx8MTc2MjYxNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "conversation park"
     },
     {
       "id": "approach-guide",
       "description": "A person confidently walking towards another in a casual setting.",
-      "imageUrl": "https://images.unsplash.com/photo-1761343819231-64b2b8011822?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2Fsa2luZyUyMGNvbmZpZGVudHxlbnwwfHx8fDE3NjI2MTc4Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1542145748-12605dbb7a5e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3YWxraW5nJTIwY29uZmlkZW50fGVufDB8fHx8MTc2MjYxNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "walking confident"
     },
     {
       "id": "interest-detection",
       "description": "A close-up of a person's smiling eyes, showing interest.",
-      "imageUrl": "https://images.unsplash.com/photo-1608764589882-975eecf78107?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxleWVzJTIwc21pbGluZ3xlbnwwfHx8fDE3NjI2MTc4Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1542131596-52b8276764bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZXllcyUyMHNtaWxpbmd8ZW58MHx8fHwxNzYyNjE3ODI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "eyes smiling"
     },
     {
       "id": "maturity-enhancement",
       "description": "A person reading a book and growing.",
-      "imageUrl": "https://images.unsplash.com/photo-1532993680872-98b088e2cacd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBncm93aW5nfGVufDB8fHx8MTc2MjYxNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1732204662885-fe0a721bdfcc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwZ3Jvd2luZ3xlbnwwfHx8fDE3NjI2MTc4Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person growing"
+    },
+    {
+      "id": "communication-analyzer",
+      "description": "A magnifying glass over a chat bubble, symbolizing analysis.",
+      "imageUrl": "https://picsum.photos/seed/ca1/600/338",
+      "imageHint": "analyzing message"
     }
   ]
 }
