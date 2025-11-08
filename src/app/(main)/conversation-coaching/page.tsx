@@ -109,7 +109,7 @@ export default function ConversationCoachingPage() {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
+    <div className="w-full max-w-4xl mx-auto flex flex-col h-[calc(100vh-8rem)]">
       <div className="text-center mb-4">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
           Conversation Coach
@@ -222,5 +222,3 @@ export default function ConversationCoachingPage() {
     </div>
   );
 }
-
-    

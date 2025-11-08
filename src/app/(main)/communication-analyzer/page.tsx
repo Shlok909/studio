@@ -112,7 +112,7 @@ export default function CommunicationAnalyzerPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
           Safe Communication Analyzer
