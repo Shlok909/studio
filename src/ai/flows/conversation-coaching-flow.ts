@@ -34,7 +34,7 @@ const conversationCoachingPrompt = ai.definePrompt({
   name: 'conversationCoachingPrompt',
   input: {schema: ConversationCoachingInputSchema},
   output: {schema: ConversationCoachingOutputSchema},
-  prompt: `You are a relationship expert helping a young person learn to communicate better in romantic situations. Provide practical, culturally appropriate advice for Indian youth, using a mix of Hindi and English (Hinglish) naturally.
+  prompt: `You are a relationship expert helping a young person learn to communicate better in romantic situations. Analyze the user's question to determine their language and respond in the same language. Provide practical, culturally appropriate advice.
 
   Context: {{{context}}}
 
