@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, MessageCircleQuestion } from "lucide-react";
@@ -5,10 +6,9 @@ import { ArrowRight, MessageCircleQuestion } from "lucide-react";
 import {
   Card,
   CardContent,
-  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardFooter
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -38,7 +38,8 @@ const features = [
   },
   {
     title: "Maturity Guide",
-    description: "Level up your relationship game with personalized maturity tips.",
+    description:
+      "Level up your relationship game with personalized maturity tips.",
     href: "/maturity-enhancement",
     icon: Icons.maturity,
     imageId: "maturity-enhancement",
@@ -59,20 +60,25 @@ export default function DashboardPage() {
           Build Confidence, Not Just Connections
         </h1>
         <p className="mt-2 max-w-2xl text-lg text-muted-foreground">
-          Welcome to MitraAI! Stuck on what to say? Not sure if they're interested? We've got your back. Get AI-powered advice to navigate your dating life with ease.
+          Welcome to MitraAI! Stuck on what to say? Not sure if they're
+          interested? We've got your back. Get AI-powered advice to navigate
+          your dating life with ease.
         </p>
         <Button asChild size="lg" className="mt-4">
-          <Link href="/conversation-coaching">
+          <Link href="#features">
             Start a Conversation <MessageCircleQuestion className="ml-2" />
           </Link>
         </Button>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
+      <div id="features" className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2 scroll-mt-20">
         {features.map((feature) => {
           const image = getImage(feature.imageId);
           return (
-            <Card key={feature.href} className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+            <Card
+              key={feature.href}
+              className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl"
+            >
               {image && (
                 <div className="aspect-video overflow-hidden">
                   <Image
@@ -94,10 +100,16 @@ export default function DashboardPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <p className="text-muted-foreground">
+                  {feature.description}
+                </p>
               </CardContent>
               <CardFooter className="mt-auto bg-muted/50 p-4">
-                <Button asChild variant="outline" className="w-full bg-background hover:bg-primary/5">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full bg-background hover:bg-primary/5"
+                >
                   <Link href={feature.href}>
                     Check it out <ArrowRight className="ml-2" />
                   </Link>
