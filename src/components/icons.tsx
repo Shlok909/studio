@@ -1,3 +1,4 @@
+
 import {
   LayoutGrid,
   MessagesSquare,
@@ -8,6 +9,7 @@ import {
   User,
   Loader2,
   Heart,
+  SendHorizontal,
   type LucideProps,
 } from 'lucide-react'
 
@@ -42,4 +44,7 @@ export const Icons = {
   ),
   spinner: Loader2,
   logo: Heart,
+  send: SendHorizontal,
 }
+
+    

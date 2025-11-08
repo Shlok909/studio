@@ -1,10 +1,11 @@
+
 "use client";
 
 import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { CornerDownLeft, Paperclip } from "lucide-react";
+import { SendHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,8 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
 import { getCoaching } from "./actions";
 import { Icons } from "@/components/icons";
@@ -26,7 +25,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
 
 const formSchema = z.object({
-  question: z.string().min(1, { message: "Message cannot be empty" }),
+  question: z.string().min(1),
 });
 
 type Message = {
@@ -46,7 +45,7 @@ export default function ConversationCoachingPage() {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollAreaViewportRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,18 +54,24 @@ export default function ConversationCoachingPage() {
     },
   });
 
+  const { watch, setValue } = form;
+  const question = watch("question");
+
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({
-        top: scrollAreaRef.current.scrollHeight,
+    if (scrollAreaViewportRef.current) {
+      scrollAreaViewportRef.current.scrollTo({
+        top: scrollAreaViewportRef.current.scrollHeight,
         behavior: 'smooth',
       });
     }
   }, [messages]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!values.question.trim()) return;
+
     setIsLoading(true);
     setMessages((prev) => [...prev, { role: "user", content: values.question }]);
+    setValue("question", "");
 
     const { data, error } = await getCoaching({
       question: values.question,
@@ -79,7 +84,7 @@ export default function ConversationCoachingPage() {
         description: error,
         variant: "destructive",
       });
-      setMessages((prev) => prev.slice(0, -1)); // Remove user message on error
+      setMessages((prev) => [...prev, { role: 'bot', content: 'Sorry, I had trouble getting a response. Please try again.' }]);
     } else if (data) {
       const botResponse = (
         <div className="space-y-4">
@@ -99,14 +104,13 @@ export default function ConversationCoachingPage() {
         </div>
       );
       setMessages((prev) => [...prev, { role: "bot", content: botResponse }]);
-      form.reset();
     }
     setIsLoading(false);
   }
 
   return (
-    <div className="h-[calc(100vh-10rem)] flex flex-col">
-       <div className="text-center mb-4">
+    <div className="flex flex-col h-[calc(100vh-8rem)]">
+      <div className="text-center mb-4">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
           Conversation Coach
         </h1>
@@ -115,20 +119,20 @@ export default function ConversationCoachingPage() {
         </p>
       </div>
 
-      <Card className="flex-1 flex flex-col">
+      <Card className="flex-1 flex flex-col mt-4">
         <CardContent className="flex-1 flex flex-col p-0">
-          <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
-            <div className="space-y-6">
+          <ScrollArea className="flex-1" viewportRef={scrollAreaViewportRef}>
+            <div className="p-4 sm:p-6 space-y-6">
               {messages.map((message, index) => (
                 <div
                   key={index}
                   className={cn(
-                    "flex items-start gap-4",
+                    "flex items-start gap-3",
                     message.role === "user" ? "justify-end" : ""
                   )}
                 >
                   {message.role === "bot" && (
-                    <Avatar className="h-9 w-9 border border-primary/20">
+                    <Avatar className="h-9 w-9 border border-primary/20 flex-shrink-0">
                       <AvatarFallback>
                         <Icons.bot className="text-primary" />
                       </AvatarFallback>
@@ -136,16 +140,16 @@ export default function ConversationCoachingPage() {
                   )}
                   <div
                     className={cn(
-                      "max-w-md rounded-lg p-3 text-sm",
+                      "max-w-xl rounded-lg p-3 text-sm shadow-sm",
                       message.role === "user"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted"
+                        ? "bg-primary text-primary-foreground rounded-br-none"
+                        : "bg-muted rounded-bl-none"
                     )}
                   >
                     {message.content}
                   </div>
                   {message.role === "user" && (
-                     <Avatar className="h-9 w-9">
+                     <Avatar className="h-9 w-9 flex-shrink-0">
                       <AvatarFallback>
                         <Icons.user />
                       </AvatarFallback>
@@ -154,29 +158,26 @@ export default function ConversationCoachingPage() {
                 </div>
               ))}
               {isLoading && (
-                 <div className="flex items-start gap-4">
+                 <div className="flex items-start gap-3">
                     <Avatar className="h-9 w-9 border border-primary/20">
                       <AvatarFallback>
                         <Icons.bot className="text-primary" />
                       </AvatarFallback>
                     </Avatar>
-                     <div className="max-w-md rounded-lg p-3 bg-muted flex items-center">
-                        <Icons.spinner className="animate-spin w-5 h-5" />
+                     <div className="max-w-md rounded-lg p-3 bg-muted flex items-center shadow-sm">
+                        <Icons.spinner className="animate-spin w-5 h-5 text-primary" />
                      </div>
                  </div>
               )}
             </div>
           </ScrollArea>
 
-          <div className="p-4 border-t">
+          <div className="p-4 border-t bg-background">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="relative overflow-hidden rounded-lg border focus-within:ring-1 focus-within:ring-ring"
+                className="relative"
               >
-                <Label htmlFor="message" className="sr-only">
-                  Message
-                </Label>
                 <FormField
                   control={form.control}
                   name="question"
@@ -185,8 +186,8 @@ export default function ConversationCoachingPage() {
                       <FormControl>
                         <Textarea
                           id="message"
-                          placeholder="Type your question here..."
-                          className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
+                          placeholder="Ask me how to start a conversation..."
+                          className="min-h-12 resize-none border-input pr-16 shadow-sm"
                           {...field}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" && !e.shiftKey) {
@@ -194,19 +195,25 @@ export default function ConversationCoachingPage() {
                               if(form.formState.isValid) form.handleSubmit(onSubmit)();
                             }
                           }}
+                          disabled={isLoading}
                         />
                       </FormControl>
-                      <FormMessage className="p-3" />
+                      <FormMessage className="absolute -top-8 right-0 text-xs" />
                     </FormItem>
                   )}
                 />
-
-                <div className="flex items-center p-3 pt-0">
-                  <Button type="submit" size="sm" className="ml-auto gap-1.5" disabled={isLoading}>
-                    Send Message
-                    <CornerDownLeft className="size-3.5" />
-                  </Button>
-                </div>
+                <Button
+                  type="submit"
+                  size="icon"
+                  className={cn(
+                    "absolute right-3 top-1/2 -translate-y-1/2 transition-transform duration-300",
+                    question.trim() ? "scale-100" : "scale-0"
+                    )}
+                  disabled={isLoading || !question.trim()}
+                  aria-label="Send Message"
+                >
+                  <SendHorizontal className="size-5" />
+                </Button>
               </form>
             </Form>
           </div>
@@ -215,3 +222,5 @@ export default function ConversationCoachingPage() {
     </div>
   );
 }
+
+    
