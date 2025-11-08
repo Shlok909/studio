@@ -119,7 +119,7 @@ export default function ConversationCoachingPage() {
         </p>
       </div>
 
-      <Card className="flex-1 flex flex-col mt-4 border-primary/20">
+      <Card className="flex-1 flex flex-col mt-4 border-destructive/50">
         <CardContent className="flex-1 flex flex-col p-0">
           <ScrollArea className="flex-1" viewportRef={scrollAreaViewportRef}>
             <div className="p-4 sm:p-6 space-y-6">
