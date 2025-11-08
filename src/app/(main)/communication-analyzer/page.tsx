@@ -122,41 +122,43 @@ export default function CommunicationAnalyzerPage() {
         </p>
       </div>
 
-      <Card>
-        <CardContent className="pt-6">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-lg">Your Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="e.g., 'Hey, I had a great time with you. When are you free next?'"
-                        className="min-h-[120px] resize-none"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Our AI will analyze the tone, appropriateness, and clarity.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" disabled={isLoading} className="w-full">
-                {isLoading ? (
-                  <Icons.spinner className="animate-spin" />
-                ) : (
-                  "Analyze Message"
-                )}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+      {!analysis && (
+        <Card>
+          <CardContent className="pt-6">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg">Your Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="e.g., 'Hey, I had a great time with you. When are you free next?'"
+                          className="min-h-[120px] resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        Our AI will analyze the tone, appropriateness, and clarity.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" disabled={isLoading} className="w-full">
+                  {isLoading ? (
+                    <Icons.spinner className="animate-spin" />
+                  ) : (
+                    "Analyze Message"
+                  )}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      )}
       
       {isLoading && (
         <div className="flex justify-center items-center mt-8">
@@ -164,7 +166,21 @@ export default function CommunicationAnalyzerPage() {
         </div>
       )}
 
-      {analysis && <AnalysisResult analysis={analysis} />}
+      {analysis && !isLoading && (
+        <div>
+          <AnalysisResult analysis={analysis} />
+          <Button
+            onClick={() => {
+              setAnalysis(null);
+              form.reset();
+            }}
+            variant="outline"
+            className="w-full mt-4"
+          >
+            Start Over
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
