@@ -29,9 +29,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { PanelLeft } from 'lucide-react';
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: Icons.home },
+  { href: '/dashboard', label: 'Home', icon: Icons.home },
   {
     href: '/conversation-coaching',
     label: 'Conversation Coach',
@@ -64,7 +66,7 @@ function MainNav() {
         <SidebarMenuItem key={item.href}>
           <Link href={item.href}>
             <SidebarMenuButton
-              isActive={pathname === item.href}
+              isActive={pathname.startsWith(item.href)}
               tooltip={item.label}
             >
               <item.icon />
@@ -81,8 +83,8 @@ function UserMenu() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                    <Avatar className="h-8 w-8">
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                    <Avatar className="h-9 w-9">
                         <AvatarImage src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User" />
                         <AvatarFallback>U</AvatarFallback>
                     </Avatar>
@@ -107,51 +109,67 @@ function UserMenu() {
     )
 }
 
-function MobileSidebar() {
-  const { openMobile, setOpenMobile } = useSidebar();
+function MobileSidebar({ children }: { children: React.ReactNode }) {
+  const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
 
   React.useEffect(() => {
-    setOpenMobile(false);
-  }, [pathname, setOpenMobile]);
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <Sidebar side="left" variant="sidebar" collapsible="offcanvas" className="md:hidden">
-      <SidebarHeader>
-        <Logo />
-      </SidebarHeader>
-      <SidebarContent>
-        <MainNav />
-      </SidebarContent>
-    </Sidebar>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="md:hidden">
+          <PanelLeft />
+          <span className="sr-only">Toggle Menu</span>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left" className="p-0 bg-sidebar text-sidebar-foreground w-72">
+        <SidebarProvider>
+          <div className="p-4">
+            <Logo />
+          </div>
+          <div className="p-2">{children}</div>
+        </SidebarProvider>
+      </SheetContent>
+    </Sheet>
   );
 }
+
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
-       <MobileSidebar />
-      <Sidebar side="left" variant="inset" collapsible="icon">
-        <SidebarHeader>
-          <Logo />
-        </SidebarHeader>
-        <SidebarContent>
-          <MainNav />
-        </SidebarContent>
-        <SidebarFooter>
-            <UserMenu />
-        </SidebarFooter>
-      </Sidebar>
-      <SidebarInset className="flex flex-col">
-        <header className="sticky top-0 z-10 flex h-14 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
-            <SidebarTrigger className="md:hidden" />
+      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+        <div className="hidden border-r bg-sidebar text-sidebar-foreground md:block">
+          <div className="flex h-full max-h-screen flex-col gap-2">
+            <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+              <Logo />
+            </div>
             <div className="flex-1">
-                {/* Can add breadcrumbs or page title here */}
+              <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+                <MainNav />
+              </nav>
+            </div>
+            <div className="mt-auto p-4">
+              <UserMenu />
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 backdrop-blur-sm">
+            <MobileSidebar>
+              <MainNav />
+            </MobileSidebar>
+            <div className="flex-1">
+              {/* Can add breadcrumbs or page title here */}
             </div>
             {/* Can add search or other actions here */}
-        </header>
-        <main className="flex-1 overflow-auto p-4 sm:p-6">{children}</main>
-      </SidebarInset>
+          </header>
+          <main className="flex-1 overflow-auto p-4 sm:p-6 lg:p-8">{children}</main>
+        </div>
+      </div>
     </SidebarProvider>
   );
 }

@@ -1,13 +1,12 @@
 import {
   LayoutGrid,
   MessagesSquare,
-  Zap,
+  Sparkles,
   ShieldCheck,
   HeartPulse,
   TrendingUp,
   User,
   Loader2,
-  HeartHandshake,
   Heart,
   type LucideProps,
 } from 'lucide-react'
@@ -15,7 +14,7 @@ import {
 export const Icons = {
   home: LayoutGrid,
   conversation: MessagesSquare,
-  approach: Zap,
+  approach: Sparkles,
   analyzer: ShieldCheck,
   interest: HeartPulse,
   maturity: TrendingUp,
