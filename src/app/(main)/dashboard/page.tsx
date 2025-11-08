@@ -66,7 +66,7 @@ export default function DashboardPage() {
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl font-headline">
           Build Confidence, Not Just Connections
         </h1>
-        <p className="mt-2 max-w-2xl text-lg text-primary/80">
+        <p className="mt-2 max-w-2xl text-lg text-primary/90">
           Welcome to MitraAI! Stuck on what to say? Not sure if they're
           interested? We've got your back. Get AI-powered advice to navigate
           your dating life with ease.
