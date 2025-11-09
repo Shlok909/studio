@@ -73,13 +73,9 @@ const SidebarProvider = React.forwardRef<
     const [openMobile, setOpenMobile] = React.useState(false)
     const [isMounted, setIsMounted] = React.useState(false);
 
-    // This is the internal state of the sidebar.
-    // We use openProp and setOpenProp for control from outside the component.
     const [_open, _setOpen] = React.useState(defaultOpen)
     const open = openProp ?? _open
-    
-    // On component mount, read the cookie and set the state.
-    // This effect runs only once on the client after initial render.
+
     React.useEffect(() => {
       const savedState = getCookie(SIDEBAR_COOKIE_NAME);
       if (typeof savedState === 'string') {
@@ -97,20 +93,17 @@ const SidebarProvider = React.forwardRef<
           _setOpen(openState)
         }
 
-        // This sets the cookie to keep the sidebar state.
         setCookie(SIDEBAR_COOKIE_NAME, openState, { maxAge: SIDEBAR_COOKIE_MAX_AGE, path: '/' });
       },
       [setOpenProp, open]
     )
 
-    // Helper to toggle the sidebar.
     const toggleSidebar = React.useCallback(() => {
       return isMobile
         ? setOpenMobile((open) => !open)
         : setOpen((open) => !open)
     }, [isMobile, setOpen, setOpenMobile])
 
-    // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (
@@ -126,8 +119,6 @@ const SidebarProvider = React.forwardRef<
       return () => window.removeEventListener("keydown", handleKeyDown)
     }, [toggleSidebar])
 
-    // We add a state so that we can do data-state="expanded" or "collapsed".
-    // This makes it easier to style the sidebar with Tailwind classes.
     const state = open ? "expanded" : "collapsed"
 
     const contextValue = React.useMemo<SidebarContext>(
@@ -142,9 +133,6 @@ const SidebarProvider = React.forwardRef<
       }),
       [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
     )
-
-    // Determine the collapsed state safely for SSR and client-side hydration
-    const isCollapsed = !open;
 
     return (
       <SidebarContext.Provider value={contextValue}>
@@ -162,7 +150,7 @@ const SidebarProvider = React.forwardRef<
               !isMounted && "transition-none",
               className
             )}
-            data-sidebar-collapsed={isMounted ? isCollapsed : !defaultOpen}
+            data-sidebar-collapsed={!isMounted ? true : !open}
             ref={ref}
             {...props}
           >
