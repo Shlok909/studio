@@ -78,13 +78,14 @@ const SidebarProvider = React.forwardRef<
     const [_open, _setOpen] = React.useState(defaultOpen)
     const open = openProp ?? _open
     
-    // Hydration-safe state initialization
+    // On component mount, read the cookie and set the state.
+    // This effect runs only once on the client after initial render.
     React.useEffect(() => {
-      setIsMounted(true);
       const savedState = getCookie(SIDEBAR_COOKIE_NAME);
       if (typeof savedState === 'string') {
         _setOpen(savedState === 'true');
       }
+      setIsMounted(true);
     }, []);
     
     const setOpen = React.useCallback(
@@ -142,7 +143,8 @@ const SidebarProvider = React.forwardRef<
       [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
     )
 
-    const sidebarOpen = isMounted ? open : defaultOpen;
+    // Determine the collapsed state safely for SSR and client-side hydration
+    const isCollapsed = !open;
 
     return (
       <SidebarContext.Provider value={contextValue}>
@@ -160,7 +162,7 @@ const SidebarProvider = React.forwardRef<
               !isMounted && "transition-none",
               className
             )}
-            data-sidebar-collapsed={!sidebarOpen}
+            data-sidebar-collapsed={isMounted ? isCollapsed : !defaultOpen}
             ref={ref}
             {...props}
           >
