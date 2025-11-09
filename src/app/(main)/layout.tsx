@@ -14,6 +14,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
+  SidebarRail
 } from '@/components/ui/sidebar';
 import { Logo } from '@/components/logo';
 import { Icons } from '@/components/icons';
@@ -111,7 +112,7 @@ function UserMenu() {
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
-      <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-[280px_1fr]">
+      <div className="min-h-screen w-full">
         <Sidebar>
           <SidebarHeader>
             <Logo />
@@ -122,9 +123,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           <SidebarFooter>
             <UserMenu />
           </SidebarFooter>
+          <SidebarRail />
         </Sidebar>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col md:ml-[var(--sidebar-width)] group-data-[sidebar-collapsed=true]/sidebar:md:ml-[var(--sidebar-width-icon)] transition-[margin-left] duration-300 ease-in-out">
           <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 backdrop-blur-sm">
             <SidebarTrigger className="md:hidden" />
             <div className="flex-1">{/* Can add breadcrumbs here */}</div>
