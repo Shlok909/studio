@@ -77,11 +77,11 @@ const SidebarProvider = React.forwardRef<
     const open = openProp ?? _open
 
     React.useEffect(() => {
+      setIsMounted(true);
       const savedState = getCookie(SIDEBAR_COOKIE_NAME);
       if (typeof savedState === 'string') {
         _setOpen(savedState === 'true');
       }
-      setIsMounted(true);
     }, []);
     
     const setOpen = React.useCallback(
@@ -150,7 +150,7 @@ const SidebarProvider = React.forwardRef<
               !isMounted && "transition-none",
               className
             )}
-            data-sidebar-collapsed={!isMounted ? true : !open}
+            data-sidebar-collapsed={!open}
             ref={ref}
             {...props}
           >
