@@ -1,9 +1,11 @@
+
 "use client"
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
 import { PanelLeft } from "lucide-react"
+import { getCookie, setCookie } from 'cookies-next';
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
@@ -74,6 +76,15 @@ const SidebarProvider = React.forwardRef<
     // We use openProp and setOpenProp for control from outside the component.
     const [_open, _setOpen] = React.useState(defaultOpen)
     const open = openProp ?? _open
+    
+    // Hydration-safe state initialization
+    React.useEffect(() => {
+      const savedState = getCookie(SIDEBAR_COOKIE_NAME);
+      if (typeof savedState === 'string') {
+        _setOpen(savedState === 'true');
+      }
+    }, []);
+    
     const setOpen = React.useCallback(
       (value: boolean | ((value: boolean) => boolean)) => {
         const openState = typeof value === "function" ? value(open) : value
@@ -84,7 +95,7 @@ const SidebarProvider = React.forwardRef<
         }
 
         // This sets the cookie to keep the sidebar state.
-        document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+        setCookie(SIDEBAR_COOKIE_NAME, openState, { maxAge: SIDEBAR_COOKIE_MAX_AGE, path: '/' });
       },
       [setOpenProp, open]
     )
