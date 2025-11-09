@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MessageCircleQuestion } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import {
   Card,
@@ -75,7 +75,7 @@ export default function DashboardPage() {
         </p>
         <Button asChild size="lg" className="mt-4">
           <Link href="#features">
-            Start a Conversation <MessageCircleQuestion className="ml-2" />
+            Start a Conversation <Icons.heartQuestion className="ml-2" />
           </Link>
         </Button>
       </div>
