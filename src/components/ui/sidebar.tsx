@@ -71,6 +71,7 @@ const SidebarProvider = React.forwardRef<
   ) => {
     const isMobile = useIsMobile()
     const [openMobile, setOpenMobile] = React.useState(false)
+    const [isMounted, setIsMounted] = React.useState(false);
 
     // This is the internal state of the sidebar.
     // We use openProp and setOpenProp for control from outside the component.
@@ -83,6 +84,7 @@ const SidebarProvider = React.forwardRef<
       if (typeof savedState === 'string') {
         _setOpen(savedState === 'true');
       }
+      setIsMounted(true);
     }, []);
     
     const setOpen = React.useCallback(
@@ -140,6 +142,8 @@ const SidebarProvider = React.forwardRef<
       [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
     )
 
+    const sidebarOpen = isMounted ? open : defaultOpen;
+
     return (
       <SidebarContext.Provider value={contextValue}>
         <TooltipProvider delayDuration={0}>
@@ -153,9 +157,10 @@ const SidebarProvider = React.forwardRef<
             }
             className={cn(
               "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar",
+              !isMounted && "transition-none",
               className
             )}
-            data-sidebar-collapsed={!open}
+            data-sidebar-collapsed={!sidebarOpen}
             ref={ref}
             {...props}
           >
