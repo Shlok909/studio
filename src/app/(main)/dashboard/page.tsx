@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Icons } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 const features = [
   {
@@ -21,6 +22,7 @@ const features = [
     href: "/conversation-coaching",
     icon: Icons.conversation,
     imageId: "conversation-coaching",
+    variant: "destructive",
   },
   {
     title: "Approach Guide",
@@ -114,8 +116,11 @@ export default function DashboardPage() {
               <CardFooter className="mt-auto bg-muted/50 p-4">
                 <Button
                   asChild
-                  variant="outline"
-                  className="w-full bg-background hover:bg-primary/5"
+                  variant={feature.href === '/conversation-coaching' ? 'destructive' : 'outline'}
+                  className={cn(
+                    "w-full",
+                    feature.href !== '/conversation-coaching' && "bg-background hover:bg-primary/5"
+                    )}
                 >
                   <Link href={feature.href}>
                     Check it out <ArrowRight className="ml-2" />
