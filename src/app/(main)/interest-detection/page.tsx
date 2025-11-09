@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -185,7 +186,10 @@ export default function InterestDetectionPage() {
             {result && (
                 <div>
                     <InterestResult result={result} />
-                    <Button onClick={() => setResult(null)} variant="outline" className="w-full mt-4">
+                    <Button onClick={() => {
+                        setResult(null)
+                        form.reset();
+                        }} variant="outline" className="w-full mt-4">
                         Start Over
                     </Button>
                 </div>
