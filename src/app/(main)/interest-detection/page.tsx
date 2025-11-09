@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,7 +24,7 @@ import { Icons } from "@/components/icons";
 import type { AssessInterestLevelOutput } from "@/ai/flows/assess-interest-level-flow";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Lightbulb, ThumbsDown, ThumbsUp } from "lucide-react";
+import { ArrowLeft, Lightbulb, ThumbsDown, ThumbsUp } from "lucide-react";
 
 const formSchema = z.object({
     frequencyOfInteraction: z.string().min(1, "This field is required."),
@@ -129,6 +130,14 @@ export default function InterestDetectionPage() {
     
     return (
         <div className="w-full max-w-4xl mx-auto">
+            <div className="mb-6">
+                <Button asChild variant="ghost" className="pl-1">
+                <Link href="/dashboard">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back to Dashboard
+                </Link>
+                </Button>
+            </div>
             <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
                 Interest-o-Meter

@@ -2,10 +2,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Lightbulb, ThumbsDown, ThumbsUp, TriangleAlert } from "lucide-react";
+import { ArrowLeft, Lightbulb, ThumbsDown, ThumbsUp, TriangleAlert } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -114,6 +115,14 @@ export default function CommunicationAnalyzerPage() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
+      <div className="mb-6">
+        <Button asChild variant="ghost" className="pl-1">
+          <Link href="/dashboard">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Dashboard
+          </Link>
+        </Button>
+      </div>
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
           Safe Communication Analyzer

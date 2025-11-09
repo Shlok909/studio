@@ -12,7 +12,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 
 const guideSteps = [
   {
@@ -64,6 +66,14 @@ const guideSteps = [
 export default function ApproachGuidePage() {
   return (
     <div className="w-full max-w-4xl mx-auto">
+      <div className="mb-6">
+        <Button asChild variant="ghost" className="pl-1">
+          <Link href="/dashboard">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Dashboard
+          </Link>
+        </Button>
+      </div>
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
           The Approach Guide

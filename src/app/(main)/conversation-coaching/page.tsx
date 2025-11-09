@@ -2,10 +2,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { SendHorizontal } from "lucide-react";
+import { ArrowLeft, SendHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -110,6 +111,14 @@ export default function ConversationCoachingPage() {
 
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col h-[calc(100vh-8rem)]">
+      <div className="mb-2">
+        <Button asChild variant="ghost" className="pl-1">
+          <Link href="/dashboard">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Dashboard
+          </Link>
+        </Button>
+      </div>
       <div className="text-center mb-4">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
           Conversation Coach
