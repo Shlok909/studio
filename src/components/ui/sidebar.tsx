@@ -80,11 +80,11 @@ const SidebarProvider = React.forwardRef<
     
     // Hydration-safe state initialization
     React.useEffect(() => {
+      setIsMounted(true);
       const savedState = getCookie(SIDEBAR_COOKIE_NAME);
       if (typeof savedState === 'string') {
         _setOpen(savedState === 'true');
       }
-      setIsMounted(true);
     }, []);
     
     const setOpen = React.useCallback(
