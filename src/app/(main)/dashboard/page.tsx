@@ -116,11 +116,8 @@ export default function DashboardPage() {
               <CardFooter className="mt-auto bg-muted/50 p-4">
                 <Button
                   asChild
-                  variant={feature.href === '/conversation-coaching' ? 'destructive' : 'outline'}
-                  className={cn(
-                    "w-full",
-                    feature.href !== '/conversation-coaching' && "bg-background hover:bg-primary/5"
-                    )}
+                  variant='destructive'
+                  className="w-full"
                 >
                   <Link href={feature.href}>
                     Check it out <ArrowRight className="ml-2" />
