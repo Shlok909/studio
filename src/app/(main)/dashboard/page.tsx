@@ -109,7 +109,7 @@ export default function DashboardPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
+                <p className="text-foreground/80">
                   {feature.description}
                 </p>
               </CardContent>
