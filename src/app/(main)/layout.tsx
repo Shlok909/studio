@@ -110,6 +110,12 @@ function UserMenu() {
 }
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen w-full">
@@ -133,7 +139,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             <UserMenu />
           </header>
           <main className="flex-1 overflow-auto p-4 sm:p-6 lg:p-8">
-            {children}
+            <React.Suspense fallback={<div>Loading...</div>}>
+              {isClient ? children : null}
+            </React.Suspense>
           </main>
         </div>
       </div>
