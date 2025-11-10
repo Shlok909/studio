@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,8 @@ import { Icons } from "@/components/icons";
 import type { AssessInterestLevelOutput } from "@/ai/flows/assess-interest-level-flow";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, Lightbulb, ThumbsDown, ThumbsUp } from "lucide-react";
+import { ArrowLeft, Lightbulb, ThumbsDown, ThumbsUp, PartyPopper } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
     frequencyOfInteraction: z.string().min(1, "This field is required."),
@@ -51,6 +52,23 @@ const questions = [
 ] as const;
 
 function InterestResult({ result }: { result: AssessInterestLevelOutput }) {
+    const { toast } = useToast();
+
+    useEffect(() => {
+        if (result.interestLevel >= 70) {
+            toast({
+                title: "Great news!",
+                description: "There's a high level of interest! Check out the details below.",
+            });
+        }
+    }, [result, toast]);
+
+    const getInterestColor = (level: number) => {
+        if (level < 40) return "text-destructive";
+        if (level >= 70) return "text-green-500";
+        return "text-primary";
+    }
+
     return (
         <Card className="mt-8">
             <CardHeader className="items-center">
@@ -59,7 +77,7 @@ function InterestResult({ result }: { result: AssessInterestLevelOutput }) {
             <CardContent className="space-y-6">
                 <div className="text-center">
                     <p className="text-muted-foreground">Likely Romantic Interest</p>
-                    <p className="text-6xl font-bold text-primary">{result.interestLevel}%</p>
+                    <p className={cn("text-6xl font-bold", getInterestColor(result.interestLevel))}>{result.interestLevel}%</p>
                     <Progress value={result.interestLevel} className="mt-2" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
