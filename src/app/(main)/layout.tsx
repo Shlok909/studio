@@ -116,6 +116,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     setIsClient(true);
   }, []);
 
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen w-full">
@@ -139,8 +143,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             <UserMenu />
           </header>
           <main className="flex-1 overflow-auto p-4 sm:p-6 lg:p-8">
-            <React.Suspense fallback={<div>Loading...</div>}>
-              {isClient ? children : null}
+            <React.Suspense fallback={
+              <div className="flex justify-center items-center h-full">
+                <Icons.spinner className="w-8 h-8 animate-spin text-primary" />
+              </div>
+            }>
+              {children}
             </React.Suspense>
           </main>
         </div>
