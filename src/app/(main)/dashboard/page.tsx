@@ -75,7 +75,7 @@ export default function DashboardPage() {
         </p>
         <Button asChild size="lg" className="mt-4">
           <Link href="#features">
-            Start a Conversation <Icons.heartQuestion className="ml-2 size-5" />
+            Start a Conversation <Icons.heartQuestion className="ml-2 size-6" />
           </Link>
         </Button>
       </div>
