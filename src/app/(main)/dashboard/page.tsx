@@ -69,7 +69,7 @@ export default function DashboardPage() {
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl font-headline">
           Build Confidence, Not Just Connections
         </h1>
-        <p className="mt-2 max-w-2xl text-lg text-primary/90">
+        <p className="mt-2 max-w-2xl text-lg text-primary/80">
           Welcome to MitraAI! Stuck on what to say? Not sure if they're
           interested? We've got your back. Get AI-powered advice to navigate
           your dating life with ease.
@@ -81,7 +81,7 @@ export default function DashboardPage() {
         </Button>
       </div>
 
-      <div id="features" className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 scroll-mt-20">
+      <div id="features" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 scroll-mt-20">
         {features.map((feature) => {
           const image = getImage(feature.imageId);
           return (
@@ -109,7 +109,7 @@ export default function DashboardPage() {
                   <span>{feature.title}</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <p className="text-foreground/80">
                   {feature.description}
                 </p>

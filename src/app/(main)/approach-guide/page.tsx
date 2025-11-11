@@ -75,7 +75,7 @@ export default function ApproachGuidePage() {
         </Button>
       </div>
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-headline">
           The Approach Guide
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
@@ -94,7 +94,7 @@ export default function ApproachGuidePage() {
           <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
             {guideSteps.map((step, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="font-semibold text-lg hover:no-underline">
+                <AccordionTrigger className="font-semibold text-lg hover:no-underline text-left">
                   {step.title}
                 </AccordionTrigger>
                 <AccordionContent>

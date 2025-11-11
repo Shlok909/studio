@@ -120,7 +120,7 @@ export default function ConversationCoachingPage() {
         </Button>
       </div>
       <div className="text-center mb-4">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-headline">
           Conversation Coach
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
@@ -128,7 +128,7 @@ export default function ConversationCoachingPage() {
         </p>
       </div>
 
-      <Card className="flex-1 flex flex-col mt-4 border-destructive">
+      <Card className="flex-1 flex flex-col mt-4">
         <CardContent className="flex-1 flex flex-col p-0">
           <ScrollArea className="flex-1" viewportRef={scrollAreaViewportRef}>
             <div className="p-4 sm:p-6 space-y-6">
@@ -141,7 +141,7 @@ export default function ConversationCoachingPage() {
                   )}
                 >
                   {message.role === "bot" && (
-                    <Avatar className="h-9 w-9 border border-primary/20 flex-shrink-0">
+                    <Avatar className="h-8 w-8 sm:h-9 sm:w-9 border border-primary/20 flex-shrink-0">
                       <AvatarFallback>
                         <Icons.bot className="text-primary" />
                       </AvatarFallback>
@@ -149,7 +149,7 @@ export default function ConversationCoachingPage() {
                   )}
                   <div
                     className={cn(
-                      "max-w-lg rounded-lg p-3 text-sm shadow-sm",
+                      "max-w-md sm:max-w-lg rounded-lg p-3 text-sm shadow-sm",
                       message.role === "user"
                         ? "bg-primary text-primary-foreground rounded-br-none"
                         : "bg-muted rounded-bl-none"
@@ -158,7 +158,7 @@ export default function ConversationCoachingPage() {
                     {message.content}
                   </div>
                   {message.role === "user" && (
-                     <Avatar className="h-9 w-9 flex-shrink-0">
+                     <Avatar className="h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0">
                       <AvatarFallback>
                         <Icons.user />
                       </AvatarFallback>
@@ -196,7 +196,7 @@ export default function ConversationCoachingPage() {
                         <Textarea
                           id="message"
                           placeholder="Ask me how to start a conversation..."
-                          className="min-h-12 resize-none border-destructive pr-16 shadow-sm"
+                          className="min-h-12 resize-none pr-16 shadow-sm"
                           {...field}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" && !e.shiftKey) {

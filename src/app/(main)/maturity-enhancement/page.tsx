@@ -62,7 +62,7 @@ function SuggestionsResult({ suggestions }: { suggestions: MaturitySuggestionsOu
                 <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
                     {suggestionItems.map((item, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger className="font-semibold text-lg hover:no-underline">{item.title}</AccordionTrigger>
+                            <AccordionTrigger className="font-semibold text-lg hover:no-underline text-left">{item.title}</AccordionTrigger>
                             <AccordionContent>
                                 <p className="flex items-start gap-3 text-muted-foreground">
                                     <CheckCircle2 className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
@@ -115,7 +115,7 @@ export default function MaturityEnhancementPage() {
                 </Button>
             </div>
             <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-headline">
                     Maturity Guide
                 </h1>
                 <p className="mt-2 text-lg text-muted-foreground">
@@ -129,7 +129,7 @@ export default function MaturityEnhancementPage() {
                         <CardTitle>Self-Reflection</CardTitle>
                         <CardDescription>Answer honestly to get the most helpful suggestions.</CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="pt-6">
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                 {questions.map((q) => (

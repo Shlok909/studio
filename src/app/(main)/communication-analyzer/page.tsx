@@ -67,7 +67,7 @@ function AnalysisResult({ analysis }: { analysis: AnalyzeCommunicationOutput }) 
         {feedbackItems.map((item) => (
           <Card key={item.title}>
             <CardHeader>
-              <CardTitle className="flex items-center gap-3">
+              <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
                 <item.icon className={`w-6 h-6 ${item.color}`} />
                 <span>{item.title}</span>
               </CardTitle>
@@ -124,7 +124,7 @@ export default function CommunicationAnalyzerPage() {
         </Button>
       </div>
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-headline">
           Safe Communication Analyzer
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">

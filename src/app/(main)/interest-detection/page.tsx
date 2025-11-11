@@ -71,7 +71,7 @@ function InterestResult({ result }: { result: AssessInterestLevelOutput }) {
 
     return (
         <Card className="mt-8">
-            <CardHeader className="items-center">
+            <CardHeader className="items-center text-center">
                 <CardTitle className="text-2xl">Interest Level Assessment</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -157,7 +157,7 @@ export default function InterestDetectionPage() {
                 </Button>
             </div>
             <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl font-headline">
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground font-headline">
                 Interest-o-Meter
                 </h1>
                 <p className="mt-2 text-lg text-muted-foreground">
@@ -171,9 +171,9 @@ export default function InterestDetectionPage() {
                         <CardTitle>Interaction Questionnaire</CardTitle>
                         <CardDescription>Be as detailed as possible for the most accurate analysis.</CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="pt-6">
                         <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                 {questions.map((q) => (
                                     <FormField
                                         key={q.name}
