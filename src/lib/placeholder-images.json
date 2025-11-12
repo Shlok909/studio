@@ -3,7 +3,7 @@
     {
       "id": "conversation-coaching",
       "description": "Two people having a pleasant conversation on a park bench.",
-      "imageUrl": "https://images.unsplash.com/photo-1746289222082-3a1b520b9000?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb252ZXJzYXRpb24lMjBwYXJrfGVufDB8fHx8MTc2MjYxNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://img.freepik.com/free-vector/couple-long-distance-relationship_23-2149021052.jpg?semt=ais_hybrid&w=740&q=80",
       "imageHint": "conversation park"
     },
     {
@@ -21,13 +21,13 @@
     {
       "id": "maturity-enhancement",
       "description": "A person reading a book and growing.",
-      "imageUrl": "https://images.unsplash.com/photo-1732204662885-fe0a721bdfcc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwZ3Jvd2luZ3xlbnwwfHx8fDE3NjI2MTc4Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://img.freepik.com/free-photo/curious-caucasian-girl-talking-with-friend-terrace-dreamy-young-lady-sitting-balcony-with-boyfriend_197531-12249.jpg?semt=ais_hybrid&w=740&q=80",
       "imageHint": "person growing"
     },
     {
       "id": "communication-analyzer",
       "description": "A magnifying glass over a chat bubble, symbolizing analysis.",
-      "imageUrl": "https://picsum.photos/seed/ca1/600/338",
+      "imageUrl": "https://www.shutterstock.com/image-photo/beautiful-couple-talking-sitting-on-260nw-1720382791.jpg",
       "imageHint": "analyzing message"
     }
   ]
